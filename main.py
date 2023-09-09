@@ -5,7 +5,7 @@ import pytz
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/api")
 async def root(slack_name: str = Query(""), track: str = Query("")):
 
     current_time = datetime.now(pytz.UTC)
