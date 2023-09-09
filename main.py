@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query
-from datetime import datetime, time, timedelta
+from datetime import datetime, timedelta
 import pytz
 
 app = FastAPI()
@@ -8,9 +8,8 @@ app = FastAPI()
 @app.get("/api")
 async def root(slack_name: str = Query(""), track: str = Query("")):
 
-    current_time = datetime.now(pytz.UTC)
-    utc_time = current_time.strftime("%Y-%m-%dT%H:%M:%SZ")
-    current_day = current_time.strftime("%A")
+    current_day = datetime.utcnow().strftime("%A")
+    utc_time = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
     response_data = { 
     "slack_name": slack_name,
